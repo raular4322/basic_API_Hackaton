@@ -1,9 +1,10 @@
 'use strict'
 
-var mongodb = process.env.MONGODB_URI || 'mongodb://localhost:27017/training'
+var mongodb = process.env.MONGODB || 'mongodb://localhost:27017/training'
 var port = process.env.PORT || 3000
 var mongoose = require('mongoose')
 const app = require('./app')
+
 
 mongoose.connect(mongodb, (err, res) => {
   mongoose.Promise = global.Promise;
