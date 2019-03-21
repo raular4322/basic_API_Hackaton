@@ -1,7 +1,7 @@
 {
-  "name": "TalentumSocialGam",
+  "name": "FromZeroToHero",
   "version": "1.0.0",
-  "description": "Backend software designed for Talentum 2k17",
+  "description": "Traning API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,8 +10,14 @@
   "author": "CoreDumped",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.2",
-    "mongoose": "^4.13.1",
-    "nodemon": "^1.12.1"
+    "mongoose": "^5.4.19",
+    "nodemon": "^1.18.10"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
   }
 }
