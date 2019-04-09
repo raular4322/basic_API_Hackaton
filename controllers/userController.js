@@ -31,8 +31,6 @@ function signUp(req, res) {
 
       return res.status(200).send({ message: 'Saved' });
     });
-
-    return res.status(200).send({ message: 'No previous user' });
   });
 }
 
@@ -91,17 +89,17 @@ function getUsers(req, res) {
   });
 }
 
-
 // Get user object by ID
 function getUser(req, res) {
-  User.findById(req.params.userId, (err, user) => {
+  const { userId } = req.params;
+
+  User.findOne({ userId }, (err, user) => {
     if (err) return res.status(500).send({ message: `Error on request: ${err}` });
     if (!user) return res.status(404).send({ message: `No users found: ${err}` });
 
     return res.status(200).send(user);
   });
 }
-
 
 module.exports = {
   signUp,

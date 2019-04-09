@@ -3,6 +3,11 @@ const userController = require('../controllers/userController');
 
 const api = express.Router();
 
+api.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
+  next();
+});
 
 api.post('/signup', userController.signUp);
 api.post('/login', userController.login);
