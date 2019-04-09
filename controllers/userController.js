@@ -93,7 +93,7 @@ function getUsers(req, res) {
 function getUser(req, res) {
   const { userId } = req.params;
 
-  User.findOne({ userId }, (err, user) => {
+  User.findById({ _id: userId }, (err, user) => {
     if (err) return res.status(500).send({ message: `Error on request: ${err}` });
     if (!user) return res.status(404).send({ message: `No users found: ${err}` });
 
