@@ -31,6 +31,7 @@ function signUp(req, res) {
 
       return res.status(200).send({ message: 'Saved' });
     });
+    return true;
   });
 }
 
@@ -97,7 +98,7 @@ function getUser(req, res) {
     if (err) return res.status(500).send({ message: `Error on request: ${err}` });
     if (!user) return res.status(404).send({ message: `No users found: ${err}` });
 
-    return res.status(200).send(user);
+    return res.status(200).send([user]);
   });
 }
 
