@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const app = require('./app');
 
-const mongodb = process.env.MONGODB || 'mongodb://localhost:27017/training';
+const mongodb = process.env.MONGODB || 'mongodb://localhost:27017/basicAPI';
 const port = process.env.PORT || 3000;
 
 
@@ -11,7 +11,7 @@ mongoose.connect(mongodb, { useNewUrlParser: true }, (err) => {
   } else {
     console.log(`Connection to ${mongodb} was succesfull`);
     app.listen(port, () => {
-      console.log(`Training RESTful API server started on: ${port}`);
+      console.log(`RESTful API server started on: ${port}`);
     });
   }
 });
