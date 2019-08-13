@@ -3,17 +3,12 @@ const userController = require('../controllers/userController');
 
 const api = express.Router();
 
-api.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
-  next();
-});
-
-api.post('/signup', userController.signUp);
-api.post('/login', userController.login);
-api.put('/update/:userId', userController.updateUser);
-api.get('/all', userController.getUsers);
+// Method and end of url needed to access each controller
+api.get('/', userController.getUsers);
 api.get('/:userId', userController.getUser);
-
+api.post('/', userController.createUser);
+api.put('/:userId', userController.replaceUser);
+api.patch('/:userId', userController.editUser);
+api.delete('/:userId', userController.deleteUser);
 
 module.exports = api;

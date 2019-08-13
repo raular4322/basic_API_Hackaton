@@ -1,6 +1,6 @@
 {
   "name": "basic_api_hackaton",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Basic API",
   "main": "index.js",
   "scripts": {
