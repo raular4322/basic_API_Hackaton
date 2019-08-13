@@ -152,7 +152,7 @@ function deleteUser(req, res) {
 
 // Validate the information to log in
 function login(req, res) {
-  const { email } = req.body;
+  const { email } = req.params;
   const { password } = req.body;
 
   // Find the user and check if the password is correct

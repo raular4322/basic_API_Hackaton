@@ -7,6 +7,7 @@ const api = express.Router();
 api.get('/', userController.getUsers);
 api.get('/:userId', userController.getUser);
 api.post('/', userController.createUser);
+api.post('/:email', userController.login);
 api.put('/:userId', userController.replaceUser);
 api.patch('/:userId', userController.editUser);
 api.delete('/:userId', userController.deleteUser);
