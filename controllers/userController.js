@@ -62,7 +62,7 @@ function createUser(req, res) {
       if (err2) return res.status(500).send({ message: `Error saving user ${err2}` });
       if (!newUser) return res.status(500).send({ message: 'No user to save' });
 
-      return res.status(200).send({ message: 'Saved' });
+      return res.status(200).send({ message: 'User saved', newUser });
     });
   });
 }
@@ -97,10 +97,10 @@ function replaceUser(req, res) {
     if (err1) return res.status(404).send({ message: `No user found: ${err1}` });
 
     // Replaces the user
-    user.replaceOne(userReplace, (err2, userReplaced) => {
+    user.replaceOne(userReplace, (err2) => {
       if (err2) return res.status(500).send({ message: `Error replacing user ${err2}` });
 
-      return res.status(200).send({ message: `User updated ${userReplaced}` });
+      return res.status(200).send({ message: 'User replaced' });
     });
   });
 }
@@ -129,9 +129,8 @@ function editUser(req, res) {
   if (signUpDate) updatedFields.signUpDate = req.body.signUpDate;
 
   // Update the user
-  User.findByIdAndUpdate(userId, updatedFields, (err, user) => {
+  User.findByIdAndUpdate(userId, updatedFields, (err) => {
     if (err) return res.status(500).send({ message: `Error finding user ${err}` });
-    if (!user) return res.status(404).send({ message: 'User not found' });
 
     return res.status(200).send({ message: 'User updated' });
   });
