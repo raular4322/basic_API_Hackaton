@@ -7,7 +7,7 @@ function getUsers(req, res) {
   // Finds all users in the database
   User.find({}, (err, users) => {
     if (err) return res.status(500).send({ message: `Error on request: ${err}` });
-    if (!users) return res.status(404).send({ message: `No users found: ${err}` });
+    if (!users) return res.status(404).send({ message: 'No users found' });
 
     return res.status(200).send(users);
   });
@@ -78,7 +78,7 @@ function replaceUser(req, res) {
   const { phone } = req.body;
   const { signUpDate } = req.body;
 
-  if (!userId || !email || !firstname || !surname || !password) {
+  if (!email || !firstname || !surname || !password) {
     return res.status(400).send({ message: 'Missing params' });
   }
 
@@ -107,6 +107,8 @@ function replaceUser(req, res) {
 
 // Update the user information
 function editUser(req, res) {
+  const updatedFields = {};
+
   const { userId } = req.params;
   const { email } = req.body;
   const { firstname } = req.body;
@@ -115,9 +117,6 @@ function editUser(req, res) {
   const { password } = req.body;
   const { phone } = req.body;
   const { signUpDate } = req.body;
-  const updatedFields = {};
-
-  if (!userId) return res.status(400).send({ message: 'Missing params' });
 
   // Get the new information
   if (email) updatedFields.email = req.body.email;
