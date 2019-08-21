@@ -8,7 +8,7 @@
     "start": "nodemon server.js"
   },
   "author": "Raular4322",
-  "license": "ISC",
+  "license": "gpl-3.0",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.2",
