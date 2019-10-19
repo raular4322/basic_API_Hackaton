@@ -7,9 +7,9 @@ Para crear una API Rest como esta se necesita:
 
 La estructura de una API se divide en:
 
-/controllers --> Una carpeta para controladores (la lógica de la API).
-/models --> Una carpeta para los modelos de mongoose (la estructura de los objetos)
-/routes --> Una carpeta para las rutas por las que se accede a las funciones de la API
+/controllers --> Una carpeta para controladores (la lógica de la API).      
+/models --> Una carpeta para los modelos de mongoose (la estructura de los objetos)      
+/routes --> Una carpeta para las rutas por las que se accede a las funciones de la API      
 
 Para correr la api de forma local sigue los siguientes pasos:
 
