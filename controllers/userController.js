@@ -20,7 +20,7 @@ function getUser(req, res) {
   if (!userId) return res.status(400).send({ message: 'Missing params' });
 
   // Finds the user with the id provided
-  User.findById({ _id: userId }, (err, user) => {
+  User.findById({ userId }, (err, user) => {
     if (err) return res.status(404).send({ message: `No users found: ${err}` });
 
     return res.status(200).send(user);
