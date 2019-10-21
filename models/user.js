@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  email: { type: String, unique: true, required: true },
-  password: { type: String, required: true },
-  firstname: { type: String, required: true },
-  surname: { type: String, required: true },
+  email: { type: String, unique: true, required: [true, 'email requiered'] },
+  password: { type: String, required: [true, 'password requiered'] },
+  firstname: { type: String, required: [true, 'firstname requiered'] },
+  surname: { type: String, required: [true, 'surname requiered'] },
   avatarImage: { type: String },
-  phone: { type: Number },
+  phone: { type: Number, minlength: 9, maxlength: 9 },
   signUpDate: { type: Date, default: Date.now() },
 });
 

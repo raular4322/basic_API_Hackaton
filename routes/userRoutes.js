@@ -1,15 +1,15 @@
 const express = require('express');
 const userController = require('../controllers/userController');
 
-const api = express.Router();
+const router = express.Router();
 
 // Method and end of url needed to access each controller
-api.get('/', userController.getUsers);
-api.get('/:userId', userController.getUser);
-api.post('/', userController.createUser);
-api.post('/:email', userController.login);
-api.put('/:userId', userController.replaceUser);
-api.patch('/:userId', userController.editUser);
-api.delete('/:userId', userController.deleteUser);
+router.get('/', userController.getUsers);
+router.get('/:userId', userController.getUser);
+router.post('/', userController.createUser);
+router.post('/:email', userController.login);
+router.put('/:userId', userController.replaceUser);
+router.patch('/:userId', userController.editUser);
+router.delete('/:userId', userController.deleteUser);
 
-module.exports = api;
+module.exports = router;
