@@ -7,7 +7,6 @@ function getUsers(req, res) {
   // Finds all users in the database
   User.find({}, (error, users) => {
     if (error) return res.status(500).send({ error });
-    if (!users) return res.status(404).send({ message: 'No users found' });
 
     return res.status(200).send(users);
   });
@@ -17,10 +16,8 @@ function getUsers(req, res) {
 function getUser(req, res) {
   const { userId } = req.params;
 
-  if (!userId) return res.status(400).send({ message: 'Missing userId parameter' });
-
   // Finds the user with the id provided
-  User.findById({ userId }, (error, user) => {
+  User.findById(userId, (error, user) => {
     if (error) return res.status(404).send({ message: 'No users found', error });
 
     return res.status(200).send(user);
@@ -90,8 +87,6 @@ function editUser(req, res) {
 // Deletes the user from the database
 function deleteUser(req, res) {
   const { userId } = req.params;
-
-  if (!userId) return res.status(400).send({ message: 'Missing userId parameter' });
 
   User.findByIdAndRemove(userId, (err, user) => {
     if (err) return res.status(500).send({ err });
