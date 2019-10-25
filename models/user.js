@@ -8,7 +8,7 @@ const userSchema = new Schema({
   firstname: { type: String, required: [true, 'firstname requiered'] },
   surname: { type: String, required: [true, 'surname requiered'] },
   avatarImage: { type: String },
-  phone: { type: Number, min: 9, max: 9 },
+  phone: { type: String, minlength: 9, maxlength: 9 },
   signUpDate: { type: Date, default: Date.now() },
 });
 
