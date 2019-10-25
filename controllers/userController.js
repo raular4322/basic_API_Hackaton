@@ -26,22 +26,14 @@ function getUser(req, res) {
 
 // Create and save a new user
 function createUser(req, res) {
-  const { email } = req.body;
+  // Create a new user
+  const user = new User(req.body);
 
-  // Checks if the user already exist
-  User.findOne({ email }, (err, userExists) => {
-    if (err) return res.status(500).send({ err });
-    if (userExists) return res.status(409).send({ message: 'User already exists' });
+  // Save the new user
+  user.save((error, newUser) => {
+    if (error) return res.status(400).send({ message: 'Error saving user', error });
 
-    // Create a new user
-    const user = new User(req.body);
-
-    // Save the new user
-    user.save((error, newUser) => {
-      if (error) return res.status(400).send({ message: 'Error saving user', error });
-
-      return res.status(200).send({ message: 'Saved user', newUser });
-    });
+    return res.status(200).send({ message: 'Saved user', newUser });
   });
 }
 
