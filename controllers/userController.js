@@ -98,8 +98,9 @@ function login(req, res) {
     if (err) return res.status(500).send({ err });
     if (!user) return res.status(404).send({ message: 'No user found' });
 
-    if (password === user.password) return res.status(200).send({ message: 'Correct password' });
-    return res.status(200).send({ message: 'Incorrect password' });
+    if (password !== user.password) return res.status(401).send({ message: 'Incorrect password' });
+
+    return res.status(200).send({ message: 'Correct password' });
   });
 }
 
