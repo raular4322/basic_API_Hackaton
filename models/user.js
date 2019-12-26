@@ -1,4 +1,8 @@
+/* eslint-disable func-names */
+/* eslint-disable consistent-return */
+
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const { Schema } = mongoose;
 
@@ -10,6 +14,16 @@ const userSchema = new Schema({
   avatarImage: { type: String },
   phone: { type: String, minlength: 9, maxlength: 9 },
   signUpDate: { type: Date, default: Date.now() },
+});
+
+userSchema.pre('save', function (next) {
+  const user = this;
+  if (!user.isModified('password')) return next();
+  bcrypt.hash(user.password, 10, (err, hash) => {
+    if (err) return next(err);
+    user.password = hash;
+    next();
+  });
 });
 
 module.exports = mongoose.model('User', userSchema);

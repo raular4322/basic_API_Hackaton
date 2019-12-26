@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
-
+const bcrypt = require('bcrypt');
+const token = require('../middleware/auth');
 const User = require('../models/user');
 
 // Get user object
@@ -24,6 +25,16 @@ function getUser(req, res) {
   });
 }
 
+function findUser(req, res) {
+  const param = req.body;
+
+  User.find(param, (error, user) => {
+    if (error) return res.status(404).send({ message: 'No user found', error });
+
+    return res.status(200).send(user);
+  });
+}
+
 // Create and save a new user
 function createUser(req, res) {
   // Create a new user
@@ -33,7 +44,7 @@ function createUser(req, res) {
   user.save((error, newUser) => {
     if (error) return res.status(400).send({ message: 'Error saving user', error });
 
-    return res.status(200).send({ message: 'Saved user', newUser });
+    return res.status(200).send({ message: 'Saved user', newUser, token: token.createToken(user.id) });
   });
 }
 
@@ -90,7 +101,7 @@ function deleteUser(req, res) {
 
 // Validate the information to log in
 function login(req, res) {
-  const { email } = req.params;
+  const { email } = req.body;
   const { password } = req.body;
 
   // Find the user and check if the password is correct
@@ -98,15 +109,19 @@ function login(req, res) {
     if (err) return res.status(500).send({ err });
     if (!user) return res.status(404).send({ message: 'No user found' });
 
-    if (password === user.password) return res.status(200).send({ message: 'Correct password' });
-    return res.status(200).send({ message: 'Incorrect password' });
+    bcrypt.compare(password, user.password, (err2, isMatch) => {
+      if (err2) return res.status(500).send({ err2 });
+      if (isMatch) return res.status(200).send({ message: 'Correct password', token: token.createToken(user.id) });
+
+      return res.status(401).send({ message: 'Incorrect password' });
+    });
   });
 }
-
 
 module.exports = {
   getUser,
   getUsers,
+  findUser,
   createUser,
   replaceUser,
   editUser,

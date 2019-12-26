@@ -10,9 +10,11 @@
   "author": "Raular4322",
   "license": "gpl-3.0",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
     "express": "^4.16.2",
-    "mongoose": "^5.7.5",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.11",
     "nodemon": "^1.19.4"
   },
   "devDependencies": {
