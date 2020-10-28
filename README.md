@@ -14,7 +14,7 @@ La estructura de una API se divide en:
 Para correr la api de forma local sigue los siguientes pasos:
 
 1. Clona este repositorio
-2. Instala MongoDB y Node.js
+2. Instala MongoDB, Node.js y python (este ultimo es necesario para usar bcrypt)
 3. Modifica el path /data/db de mongo o añadelo a el path general del sistema (no recomendado)
 4. Si no tienes una instancia de mongo en tus procesos ejecuta "mongod" en la terminal
 4. Ejecuta 'npm install' dentro de la carpeta de la API.
